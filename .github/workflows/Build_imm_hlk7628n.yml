@@ -18,7 +18,7 @@ on:
 env:
   CONFIG_FILE: 'config/hlk7628n.config'
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: openwrt-24.10
+  REPO_BRANCH: openwrt-25.12
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diy-part1.sh
   UPLOAD_FIRMWARE: true
@@ -189,7 +189,7 @@ jobs:
       run: |
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         cat <<EOF > release.txt
-        🚀 OpenWrt firmware for XG_040G_MD
+        🚀 OpenWrt firmware for hlk7628n
         ----------------------
         设备: hlk7628n
         时间: $(date +"%Y-%m-%d %H:%M")
