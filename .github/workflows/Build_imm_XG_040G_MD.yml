@@ -10,7 +10,7 @@ on:
         default: false
         type: boolean
       log_switch:
-        description: " ← 单线程编译"
+        description: " ← 单线程编译 默认4线程"
         required: false
         default: false
         type: boolean
