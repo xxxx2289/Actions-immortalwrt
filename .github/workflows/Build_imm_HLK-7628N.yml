@@ -10,7 +10,7 @@ on:
         default: false
         type: boolean
       log_switch:
-        description: "编译日志开关"
+        description: " ← 单线程编译"
         required: false
         default: false
         type: boolean
