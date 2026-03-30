@@ -56,8 +56,8 @@ jobs:
       run: |
         sudo -E apt-get -y update
         sudo -E apt-get -y install $(curl -fsSL https://raw.githubusercontent.com/xuxin1955/depend_ubuntu2204_openwrt/refs/heads/main/depend_ubuntu2204_openwrt)
-        wget https://raw.githubusercontent.com/xuxin1955/depend_ubuntu2204_openwrt/main/mkbootimg_10.0.0+r36-9_all.deb
-        sudo dpkg -i mkbootimg_10.0.0+r36-9_all.deb
+        wget https://raw.githubusercontent.com/xuxin1955/depend_ubuntu2204_openwrt/main/mkbootimg_34.0.5-12build1_all.deb
+        sudo dpkg -i mkbootimg_34.0.5-12build1_all.deb
         sudo apt-get install -f -y
         # 验证安装
         mkbootimg --help || true
