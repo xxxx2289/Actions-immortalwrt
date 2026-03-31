@@ -69,14 +69,6 @@ jobs:
         echo "❌ mkbootimg not found in PATH!"
         fi
         
-        wget https://raw.githubusercontent.com/xuxin1955/depend_ubuntu2204_openwrt/main/Python-2.7.18.tar.xz
-        tar -xf Python-2.7.18.tar.xz
-        cd Python-2.7.18
-        ./configure --enable-optimizations
-        make -j$(nproc)
-        sudo make altinstall
-        python2.7 --version
-        
         sudo timedatectl set-timezone "${TZ}"
         echo "status=success" >> ${GITHUB_OUTPUT}
         
