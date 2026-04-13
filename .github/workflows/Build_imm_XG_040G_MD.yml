@@ -67,7 +67,7 @@ jobs:
           echo "CONFIG_FILE=config/040.config" >> $GITHUB_ENV
         else
           echo "REPO_URL=https://github.com/xiangtailiang/openwrt" >> $GITHUB_ENV
-          echo "REPO_BRANCH=openwrt-25.12" >> $GITHUB_ENV
+          echo "REPO_BRANCH=main" >> $GITHUB_ENV
           echo "CONFIG_FILE=config/040G.config" >> $GITHUB_ENV
         fi
  
