@@ -52,21 +52,27 @@ jobs:
         id: dynamic_config
         run: |
          if [[ "${{ github.event.inputs.patch_type }}" == "patch-master" ]]; then
-          echo "REPO_BRANCH=master" >> $GITHUB_ENV
-          echo "IS_MASTER_PATCH=true" >> $GITHUB_ENV
+            echo "REPO_REF=master" >> $GITHUB_ENV
+            echo "IS_TAG=false" >> $GITHUB_ENV
+            echo "IS_MASTER_PATCH=true" >> $GITHUB_ENV
          elif [[ "${{ github.event.inputs.patch_type }}" == "patch-25.12.0-rc2" ]]; then
-          echo "REPO_BRANCH=openwrt-25.12" >> $GITHUB_ENV
-          echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
+            echo "REPO_REF=25.12.0-rc2" >> $GITHUB_ENV
+            echo "IS_TAG=true" >> $GITHUB_ENV
+            echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
          elif [[ "${{ github.event.inputs.patch_type }}" == "patch-bingoguo93-25.12" ]]; then
-          echo "REPO_BRANCH=openwrt-25.12" >> $GITHUB_ENV
-          echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
+            echo "REPO_REF=openwrt-25.12" >> $GITHUB_ENV
+            echo "IS_TAG=false" >> $GITHUB_ENV
+            echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
          elif [[ "${{ github.event.inputs.patch_type }}" == "patch-xiangtailiang-25.12" ]]; then
-          echo "REPO_BRANCH=openwrt-25.12" >> $GITHUB_ENV
-          echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
+            echo "REPO_REF=openwrt-25.12" >> $GITHUB_ENV
+            echo "IS_TAG=false" >> $GITHUB_ENV
+            echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
          else
-          echo "REPO_BRANCH=${{ env.REPO_BRANCH }}" >> $GITHUB_ENV
-          echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
+            echo "REPO_REF=${{ env.REPO_BRANCH }}" >> $GITHUB_ENV
+            echo "IS_TAG=false" >> $GITHUB_ENV
+            echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
          fi
+
 
 
 
@@ -75,7 +81,6 @@ jobs:
         run: |
           LATEST_COMMIT=$(git ls-remote ${{ env.REPO_URL }} ${{ env.REPO_BRANCH }} | awk '{print $1}')
           echo "LATEST_COMMIT=$LATEST_COMMIT" >> $GITHUB_ENV
-          echo "手动触发构建，跳过更新检查"
           echo "should_build=true" >> $GITHUB_OUTPUT
 
 
@@ -114,12 +119,20 @@ jobs:
 
       - name: Clone OpenWrt source code
         run: |
-          git clone --depth 1 --branch "$REPO_BRANCH" "$REPO_URL" openwrt
-          cd openwrt
+          if [[ "$IS_TAG" == "true" ]]; then
+            git clone "$REPO_URL" openwrt
+            cd openwrt
+            git fetch origin "refs/tags/$REPO_REF"
+            git checkout refs/tags/$REPO_REF
+          else
+            git clone --depth 1 --branch "$REPO_REF" "$REPO_URL" openwrt
+            cd openwrt
+          fi
           echo "COMMIT_HASH_FULL=$(git rev-parse HEAD)" >> $GITHUB_ENV
           echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           echo "COMMIT_MSG=$(git log -1 --pretty=format:%s)" >> $GITHUB_ENV
           echo "COMMIT_DATE=$(git log -1 --pretty=format:"%Y-%m-%d %H:%M:%S" --date=local)" >> $GITHUB_ENV
+
 
       - name: Apply XG-040G-MD Patch Files
         working-directory: ./openwrt
