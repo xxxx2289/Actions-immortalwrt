@@ -107,15 +107,14 @@ jobs:
        python3 -c "import setuptools.build_meta; print('setuptools.build_meta OK')"
        
     - name: Debug clone condition
+      env:
+       INIT_STATUS: ${{ steps.init.outputs.status }}
+       SUCCESS_FLAG: ${{ success() }}
       run: |
-        # 将 GitHub Actions 表达式结果写入环境变量
-        echo "INIT_STATUS=${{ steps.init.outputs.status }}" >> $GITHUB_ENV
-        echo "SUCCESS_FLAG=${{ success() }}" >> $GITHUB_ENV
-
-        # 用普通 shell 变量打印，日志一定可见
         echo "--- Debug Info ---"
         echo "init status = $INIT_STATUS"
         echo "success()   = $SUCCESS_FLAG"
+
 
     
         
