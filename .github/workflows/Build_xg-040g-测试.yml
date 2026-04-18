@@ -51,11 +51,17 @@ jobs:
       - name: Set dynamic branch and config
         id: dynamic_config
         run: |
-          if [[ "${{ inputs.patch_type }}" == "patch-master" ]]; then
+          if [[ "${{ github.event.inputs.patch_type }}" == "patch-master" ]]; then
             echo "REPO_BRANCH=master" >> $GITHUB_ENV
             echo "IS_MASTER_PATCH=true" >> $GITHUB_ENV
-          elif [[ "${{ inputs.patch_type }}" == "patch-25.12.0-rc2" ]]; then
+          elif [[ "${{ github.event.inputs.patch_type }}" == "patch-25.12.0-rc2" ]]; then
             echo "REPO_BRANCH=v25.12.0-rc2" >> $GITHUB_ENV
+            echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
+          elif [[ "${{ github.event.inputs.patch_type }}" == "patch-bingoguo93-25.12" ]]; then
+            echo "REPO_BRANCH=openwrt-25.12" >> $GITHUB_ENV
+            echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
+          elif [[ "${{ github.event.inputs.patch_type }}" == "patch-xiangtailiang-25.12" ]]; then
+            echo "REPO_BRANCH=openwrt-25.12" >> $GITHUB_ENV
             echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
           else
             echo "REPO_BRANCH=${{ env.REPO_BRANCH }}" >> $GITHUB_ENV
