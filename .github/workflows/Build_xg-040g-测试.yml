@@ -122,7 +122,7 @@ jobs:
           if [[ "$IS_TAG" == "true" ]]; then
             git clone "$REPO_URL" openwrt
             cd openwrt
-            git fetch origin "refs/tags/$REPO_REF"
+            git fetch --depth 1 origin "refs/tags/$REPO_REF"
             git checkout refs/tags/$REPO_REF
           else
             git clone --depth 1 --branch "$REPO_REF" "$REPO_URL" openwrt
