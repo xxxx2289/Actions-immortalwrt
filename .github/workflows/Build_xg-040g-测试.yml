@@ -124,19 +124,19 @@ jobs:
       - name: Apply XG-040G-MD Patch Files
         working-directory: ./openwrt
         run: |
-          SELECTED_PATCH=${{ inputs.patch_type || 'patch-bingoguo93-25.12' }}
-          echo "SELECTED_PATCH=$SELECTED_PATCH" >> $GITHUB_ENV
-          
-          if [ -d "../$SELECTED_PATCH" ] && [ -f "../$SELECTED_PATCH/patch.sh" ]; then
+         SELECTED_PATCH="${{ github.event.inputs.patch_type }}"
+         echo "SELECTED_PATCH=$SELECTED_PATCH" >> $GITHUB_ENV
+    
+         if [ -d "../$SELECTED_PATCH" ] && [ -f "../$SELECTED_PATCH/patch.sh" ]; then
             echo "--- 正在应用补丁：$SELECTED_PATCH ---"
             cp -r -f ../$SELECTED_PATCH .
             chmod +x $SELECTED_PATCH/patch.sh
             cd $SELECTED_PATCH && ./patch.sh
             echo "--- 补丁应用成功 ---"
-          else
+         else
             echo "错误: 未找到 $SELECTED_PATCH 补丁目录或脚本！"
             exit 1
-          fi
+         fi
 
       - name: Free up disk space
         run: |
@@ -163,7 +163,6 @@ jobs:
 
       - name: Configuration Customization
         run: |
-      
           cp -fv "${CONFIG_FILE}" openwrt/.config
           cd openwrt && make defconfig
            
@@ -200,7 +199,7 @@ jobs:
           if [[ "${{ inputs.log_switch }}" == "true" ]]; then
             make -j1 V=s
           else
-            make -j$(nproc) || make -j1 V=s
+            make -j$(nproc) || make -j4 V=s
           fi
           
           DEVICE_NAME=$(grep -o 'CONFIG_TARGET.*DEVICE_[^=]*=y' .config | head -1 | sed 's/.*DEVICE_\(.*\)=y/\1/')
