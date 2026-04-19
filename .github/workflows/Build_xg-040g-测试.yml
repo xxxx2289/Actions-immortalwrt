@@ -72,6 +72,7 @@ jobs:
            echo "IS_TAG=false" >> $GITHUB_ENV
            echo "IS_MASTER_PATCH=false" >> $GITHUB_ENV
          fi
+           echo "REPO_BRANCH=$REPO_REF" >> $GITHUB_ENV
 
 
 
