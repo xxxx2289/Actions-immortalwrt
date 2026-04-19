@@ -134,6 +134,13 @@ jobs:
           echo "COMMIT_MSG=$(git log -1 --pretty=format:%s)" >> $GITHUB_ENV
           echo "COMMIT_DATE=$(git log -1 --pretty=format:"%Y-%m-%d %H:%M:%S" --date=local)" >> $GITHUB_ENV
 
+          echo "=== 验证当前 Git 分支 ==="
+          git branch -a
+          echo "当前分支: $(git rev-parse --abbrev-ref HEAD)"
+          echo "远程地址: $(git remote -v)"
+          echo "=== 验证结束 ==="
+
+
 
       - name: Apply XG-040G-MD Patch Files
         working-directory: ./openwrt
