@@ -66,6 +66,19 @@ Bus 001 Device 015: ID 3625:0110 AICSemi AIC8800DC
 
 7628N模块
 ![7628N模块](https://raw.githubusercontent.com/xuxin1955/Actions-immortalwrt/main/pics/GIF_20260417_073543.gif)
+
+7628N刷机命令
+
+
+ssh推送刷机命令参考！！！
+保配置刷机命令 cat immortalwrt-ramips-mt76x8-hilink_hlk-7628n-squashfs-sysupgrade.bin | ssh root@192.168.1.1 "cat > /tmp/fw.bin && sysupgrade /tmp/fw.bin"
+
+
+不保配置刷机命令 cat immortalwrt-ramips-mt76x8-hilink_hlk-7628n-squashfs-sysupgrade.bin | ssh root@192.168.1.1 "cat > /tmp/fw.bin && sysupgrade -n /tmp/fw.bin"
+
+
+![7628N模块](https://raw.githubusercontent.com/xuxin1955/Actions-immortalwrt/main/pics/Screenshot_2026-04-21-00-24-09-14_9e8df3d0c7c1f50248b6ee043a653d26.jpg)
+
 ## Credits
 
 - [Microsoft Azure](https://azure.microsoft.com)
