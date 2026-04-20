@@ -235,12 +235,21 @@ jobs:
         if [ "${UPLOAD_GOFILE}" = "true" ] && [ -n "${{ steps.gofile.outputs.url }}" ]; then
         echo "🔗 GoFile" >> release.txt
         fi
-        echo "## Immortalwrt master分支 高通410系列" >> release.txt
-        echo "- 管理地址:192.168.100.1" >> release.txt
-        echo "  内核版本: ${{ env.KERNEL_VER }}" >> release.txt
-        echo "  默认用户:root" >> release.txt
-        echo "  默认密码:空" >> release.txt
+        {
+          echo "## Immortalwrt master分支 高通410系列"
+          echo "- 管理地址: 192.168.100.1"
+          echo "  内核版本: ${{ env.KERNEL_VER }}"
+          echo "  默认用户: root"
+          echo "  默认密码: 空"
+          echo ""
+          echo "### 主要插件"
+          echo "#### luci-app 系列"
+          find openwrt/bin/packages -name "luci-app-*.ipk" | sed 's|.*/||' | cut -d_ -f1 | sort | sed 's/^/- /'
+          echo "#### kmod-usb 系列"
+          find openwrt/bin/packages -name "kmod-usb*.ipk" | sed 's|.*/||' | cut -d_ -f1 | sort | sed 's/^/- /'
+        } >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
+
 
 
     - name: Generate file list
