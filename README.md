@@ -87,7 +87,7 @@ Bus 001 Device 015: ID 3625:0110 AICSemi AIC8800DC
 8812CU和8811CU都能完美驱动
 
 
-![RTL8811CU网卡](https://raw.githubusercontent.com/xuxin1955/Actions-OpenWrt/main/pics/mmexport1769855276375.jpg)
+![RTL8811CU网卡](https://github.com/xuxin1955/Actions-immortalwrt/raw/main/pics/tb_image_share_1776824849109.png)
 
 ![410插8811CU网卡](https://raw.githubusercontent.com/xuxin1955/Actions-OpenWrt/main/pics/GIF_20260131_184804.gif)
 
