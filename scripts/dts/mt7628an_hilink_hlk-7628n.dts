@@ -111,5 +111,7 @@
 
 	nvmem-cells = <&eeprom_factory_0>;
 	nvmem-cell-names = "eeprom";
+
 	country-code = <0x43>;
 };
+
