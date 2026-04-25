@@ -23,16 +23,6 @@
 			linux,code = <KEY_RESTART>;
 		};
 	};
-
-	leds {
-		compatible = "gpio-leds";
-
-		wlan {
-			function = LED_FUNCTION_WLAN;
-			color = <LED_COLOR_ID_GREEN>;
-			gpios = <&gpio 44 GPIO_ACTIVE_LOW>;
-		};
-	};
 };
 
 &state_default {
@@ -118,4 +108,3 @@
 
 	country-code = <0x43>;
 };
-
