@@ -26,4 +26,6 @@ if [ -f feeds/packages/libs/libmbim/Makefile ]; then
 fi
 
 # Make sure glib2 is selected
-grep -q '^CONFIG_PACKAGE_glib2=y' .config || echo 'CONFIG_PACKAGE_glib2=y' >> .config
+sed -i '/^CONFIG_PACKAGE_glib2=/d' .config
+sed -i '/^# CONFIG_PACKAGE_glib2 is not set/d' .config
+echo 'CONFIG_PACKAGE_glib2=y' >> .config
