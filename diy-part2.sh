@@ -18,16 +18,16 @@ git clone https://github.com/lkiuyu/luci-app-temp-status package/luci-app-temp-s
 git clone https://github.com/lkiuyu/DbusSmsForwardCPlus package/DbusSmsForwardCPlus
 
 # 改 libmbim
-sed -i 's/DEPENDS:=+glib2/DEPENDS:=+glib2 +glib2-gio +glib2-gobject +glib2-core/' package/feeds/packages/libmbim/Makefile
+# sed -i 's/DEPENDS:=+glib2/DEPENDS:=+glib2 +glib2-gio +glib2-gobject +glib2-core/' package/feeds/packages/libmbim/Makefile
 
 # 改 libqrtr-glib
-sed -i 's/DEPENDS:=+glib2/DEPENDS:=+glib2 +glib2-gio +glib2-gobject +glib2-core/' package/feeds/packages/libqrtr-glib/Makefile
+# sed -i 's/DEPENDS:=+glib2/DEPENDS:=+glib2 +glib2-gio +glib2-gobject +glib2-core/' package/feeds/packages/libqrtr-glib/Makefile
 
 # 验证
-echo "=== libmbim ==="
-grep "DEPENDS" package/feeds/packages/libmbim/Makefile
-echo "=== libqrtr-glib ==="
-grep "DEPENDS" package/feeds/packages/libqrtr-glib/Makefile
+# echo "=== libmbim ==="
+# grep "DEPENDS" package/feeds/packages/libmbim/Makefile
+# echo "=== libqrtr-glib ==="
+# grep "DEPENDS" package/feeds/packages/libqrtr-glib/Makefile
 
 
 
