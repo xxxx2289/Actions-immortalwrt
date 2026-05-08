@@ -16,7 +16,7 @@ on:
         type: boolean
 
 env:
-  CONFIG_FILE: 'config/hlk7628n.config'
+  CONFIG_FILE: 'config/skw97.config'
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
