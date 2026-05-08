@@ -59,7 +59,7 @@
 			gpios = <&gpio 15 GPIO_ACTIVE_LOW>;
 		};
 
-		led_sig4: sig4 {
+		sig4 {
 			label = "green:sig4";
 			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
 		};
@@ -87,13 +87,13 @@
 
 			partition@30000 {
 				label = "firmware";
-				reg = <0x030000 0xfc0000>;
+				reg = <0x030000 0x7c0000>;
 				compatible = "denx,uimage";
 			};
 
-			art: partition@ff0000 {
+			art: partition@7f0000 {
 				label = "art";
-				reg = <0xff0000 0x010000>;
+				reg = <0x7f0000 0x010000>;
 				read-only;
 			};
 		};
